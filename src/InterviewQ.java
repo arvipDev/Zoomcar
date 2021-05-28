@@ -11,6 +11,9 @@ public class InterviewQ {
         System.out.println(isBalanced("[{}()]"));
         System.out.println(isBalanced("(())({})"));
 
+        int[] arr = new int[] {16, 1, -6, 7, -9, 12};
+        getSolution(arr);
+
     }
 
     // Check if the given string of brackets are balanced.
@@ -39,6 +42,31 @@ public class InterviewQ {
             } else return false;
         }
         return (openBrackets.size() == 0);
+    }
+
+    // Get the 2 integers from the given array, whose sum is closest to 0.
+    //[-12, -4, -2, 6, 15, 20]
+    //[16, 1, -5, 7, -9, 12]
+
+    public static void getSolution (int[] values){
+        Arrays.sort(values);
+        // would use merge sort with O(NlogN) time complexity
+        System.out.println(Arrays.toString(values));
+        int tailPointer = values.length - 1;
+        int smallestSum = 0;
+        int headPointer = 0;
+
+        smallestSum = values[headPointer] + values[tailPointer];
+        tailPointer--;
+        while (!(tailPointer == headPointer)){
+            if (smallestSum > values[headPointer] + values[tailPointer] ){
+                smallestSum = values[headPointer] + values[tailPointer];
+                headPointer++;
+            } else {
+                tailPointer--;
+            }
+        }
+        System.out.println(smallestSum);
     }
 
 }
